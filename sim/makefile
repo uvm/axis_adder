@@ -30,6 +30,7 @@ TBSRC = ../testbench/axis_tests.d \
 	../testbench/axis_monitor.d \
 	../testbench/axis_driver.d \
 	../testbench/axis_out_driver.d \
+	../testbench/axis_nodelay_out_driver.d \
 	../testbench/axis_sequencer.d \
 	../testbench/axis_adder.d \
 
@@ -60,4 +61,4 @@ run_random_test: axis_adder
 	./axis_adder +UVM_TESTNAME=axis_tests.random_test +UVM_VERBOSITY=$(VERBOSITY) +random_seed=$(SEED) # +UVM_OBJECTION_TRACE
 
 run_nodelay_random_test: axis_adder
-	./axis_adder +UVM_TESTNAME=axis_tests.random_test +UVM_VERBOSITY=$(VERBOSITY) +random_seed=$(SEED) +UVM_SET_TYPE_OVERRIDE=axis_item.axis_item,axis_nodelay_item.axis_nodelay_item # +UVM_OBJECTION_TRACE
+	./axis_adder +UVM_TESTNAME=axis_tests.random_test +UVM_VERBOSITY=$(VERBOSITY) +random_seed=$(SEED) +UVM_SET_TYPE_OVERRIDE=axis_item.axis_item,axis_nodelay_item.axis_nodelay_item +UVM_SET_TYPE_OVERRIDE=axis_out_driver.axis_out_driver,axis_nodelay_out_driver.axis_nodelay_out_driver # +UVM_OBJECTION_TRACE
