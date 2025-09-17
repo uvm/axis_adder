@@ -81,7 +81,6 @@ class Top: Entity
   
   Task!stimulateClock stimulateClockTask;
   Task!stimulateReset stimulateResetTask;
-  Task!stimulateReadyIn stimulateReadyInTask;
   
   void stimulateClock() {
     while (true) {
@@ -110,10 +109,6 @@ class Top: Entity
     dut.ARESETn = true;
   }
 
-  void stimulateReadyIn() {
-    dut.TREADY_in = true;
-  }
-  
 }
 
 class uvm_adder_tb: uvm_context
@@ -121,6 +116,7 @@ class uvm_adder_tb: uvm_context
   Top top;
   override void initial() {
     uvm_config_db!(axis_intf).set(null, "uvm_test_top.env.agent.driver", "axis_in", top.axis_in);
+    uvm_config_db!(axis_intf).set(null, "uvm_test_top.env.agent.driver_out", "axis_out", top.axis_out);
     uvm_config_db!(axis_intf).set(null, "uvm_test_top.env.agent.req_snooper", "axis", top.axis_in);
     uvm_config_db!(axis_intf).set(null, "uvm_test_top.env.agent.rsp_snooper", "axis", top.axis_out);
   }

@@ -28,6 +28,7 @@ TBSRC = ../testbench/axis_tests.d \
 	../testbench/axis_snooper.d \
 	../testbench/axis_monitor.d \
 	../testbench/axis_driver.d \
+	../testbench/axis_out_driver.d \
 	../testbench/axis_sequencer.d \
 	../testbench/axis_adder.d \
 
