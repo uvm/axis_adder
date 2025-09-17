@@ -3,11 +3,14 @@ import uvm;
 
 import axis_monitor: axis_monitor;
 import axis_snooper: axis_snooper;
+import axis_driver: axis_driver;
 
 class axis_agent: uvm_agent
 {
 
   @UVM_BUILD {
+    axis_driver    driver;
+
     axis_monitor   req_monitor;
     axis_monitor   rsp_monitor;
 

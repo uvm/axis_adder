@@ -26,6 +26,7 @@ TBSRC = ../testbench/axis_tests.d \
 	../testbench/axis_agent.d \
 	../testbench/axis_snooper.d \
 	../testbench/axis_monitor.d \
+	../testbench/axis_driver.d \
 	../testbench/axis_adder.d \
 	euvm_dir/Vaxis_adder_euvm.d \
         $(LDC2BINDIR)/../import/esdl/intf/verilator/trace.d
