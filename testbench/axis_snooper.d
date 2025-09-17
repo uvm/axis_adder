@@ -37,7 +37,7 @@ class axis_snooper: uvm_monitor
         item.data = axis.data;
         item.last = cast(bool) axis.last;
         uvm_info("AXIS: ITEM", format("\n%s", item.sprint()),
-                 UVM_NONE);
+                 UVM_DEBUG);
         egress.write(item);
       }
     }

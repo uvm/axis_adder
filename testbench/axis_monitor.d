@@ -8,6 +8,7 @@ class axis_monitor: uvm_monitor
   mixin uvm_component_utils;
   
   @UVM_BUILD {
+    uvm_analysis_port!axis_seq egress;
     uvm_analysis_imp!(axis_monitor, write) ingress;
   }
 
@@ -23,7 +24,8 @@ class axis_monitor: uvm_monitor
     }
     seq ~= item;
     if (seq.is_final()) {
-      uvm_info("AXIS: SEQ", "\n" ~ seq.sprint(), UVM_NONE);
+      uvm_info("AXIS: SEQ", "\n" ~ seq.sprint(), UVM_DEBUG);
+      egress.write(seq);
       seq = null;
     }
   }
