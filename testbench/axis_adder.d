@@ -121,6 +121,7 @@ class uvm_adder_tb: uvm_context
   Top top;
   override void initial() {
     uvm_config_db!(axis_intf).set(null, "uvm_test_top", "axis_in", top.axis_in);
+    uvm_config_db!(axis_intf).set(null, "uvm_test_top.rsp_snooper", "axis", top.axis_out);
   }
 }
 

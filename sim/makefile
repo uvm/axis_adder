@@ -19,7 +19,9 @@ VLBINDIR = $(dir $(shell which verilator))
 VERBOSITY = NONE
 
 TBSRC = ../testbench/axis_tests.d \
-	../testbench/axis_adder.d
+	../testbench/axis_item.d \
+	../testbench/axis_snooper.d \
+	../testbench/axis_adder.d \
 
 DUTLIB = obj_dir/DVaxis_adder.a
 
