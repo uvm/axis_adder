@@ -26,6 +26,13 @@ class axis_driver: uvm_driver!(axis_item)
       seq_item_port.try_next_item(req);
 
       if (req !is null) {
+        for (int i = 0; i != req.delay; ++i) {
+          wait (axis_in.aclk.negedge());
+
+          axis_in.last = false;
+          axis_in.valid = false;
+        }
+        
         while (axis_in.ready == 0 || axis_in.areset == 1) {
           wait (axis_in.aclk.negedge());
 
