@@ -3,28 +3,18 @@ module axis_nodelay_out_driver;
 import uvm;
 import esdl;
 import axis_adder: axis_intf;
+import axis_out_driver: axis_out_driver;
 
-class axis_nodelay_out_driver: uvm_component
+class axis_nodelay_out_driver: axis_out_driver
 {
   mixin uvm_component_utils;
   
-  axis_intf axis_out;
-
   this(string name, uvm_component parent = null) {
     super(name, parent);
   }
 
-  
-  override void connect_phase(uvm_phase phase) {
-    super.connect_phase(phase);
-
-    uvm_config_db!axis_intf.get(this, "", "axis_out", axis_out);
-    assert (axis_out !is null);
-  }
-  
-
   override void run_phase(uvm_phase phase) {
-    super.run_phase(phase);
+    // super.run_phase(phase);
     axis_out.ready = true;
     wait (axis_out.aclk.negedge());
   }
