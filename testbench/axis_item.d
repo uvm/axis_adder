@@ -1,7 +1,7 @@
 import esdl;
 import uvm;
 
-class axis_item: uvm_object
+class axis_item: uvm_sequence_item
 {
   mixin uvm_object_utils;
 

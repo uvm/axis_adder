@@ -2,7 +2,7 @@ import esdl;
 import uvm;
 import axis_item: axis_item;
 
-class axis_seq: uvm_object
+class axis_seq: uvm_sequence!axis_item
 {
   mixin uvm_object_utils;
 
@@ -35,5 +35,20 @@ class axis_seq: uvm_object
     _values ~= item.data;
     if (item.last) _is_final = true;
   }
+
+  // task
+  override void body() {
+    import std.format: format;
+      
+    for (size_t i=0; i!=_values.length; ++i) {
+      req = axis_item.type_id.create(format("%s[%s]",
+                                            get_name() ~ ".req", i));
+      wait_for_grant();
+      req.data = cast(ubyte) _values[i];
+      if (i == _values.length - 1) req.last = true;
+      else req.last = false;
+      send_request(req);
+    }
+  } // body
 
 }
