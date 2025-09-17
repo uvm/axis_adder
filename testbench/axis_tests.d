@@ -2,8 +2,7 @@ import esdl;
 import uvm;
 
 import axis_adder: axis_intf;
-import axis_snooper: axis_snooper;
-import axis_monitor: axis_monitor;
+import axis_env: axis_env;
 
 class directed_test: uvm_test
 {
@@ -11,10 +10,7 @@ class directed_test: uvm_test
 
   axis_intf axis_in;
 
-  @UVM_BUILD {
-    axis_snooper rsp_snooper;
-    axis_monitor rsp_monitor;
-  }
+  @UVM_BUILD axis_env env;
 
   this(string name, uvm_component parent) {
     super(name, parent);
@@ -25,8 +21,6 @@ class directed_test: uvm_test
 
     uvm_config_db!axis_intf.get(this, "", "axis_in", axis_in);
     assert (axis_in !is null);
-
-    rsp_snooper.egress.connect(rsp_monitor.ingress);
   }
     
   override void run_phase(uvm_phase phase) {

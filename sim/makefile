@@ -21,6 +21,8 @@ VERBOSITY = NONE
 TBSRC = ../testbench/axis_tests.d \
 	../testbench/axis_item.d \
 	../testbench/axis_seq.d \
+	../testbench/axis_env.d \
+	../testbench/axis_agent.d \
 	../testbench/axis_snooper.d \
 	../testbench/axis_monitor.d \
 	../testbench/axis_adder.d \
