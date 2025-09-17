@@ -20,6 +20,7 @@ VERBOSITY = NONE
 
 TBSRC = ../testbench/axis_tests.d \
 	../testbench/axis_item.d \
+	../testbench/axis_nodelay_item.d \
 	../testbench/axis_seq.d \
 	../testbench/axis_random_seq.d \
 	../testbench/axis_env.d \
@@ -57,3 +58,6 @@ run_directed_test: axis_adder
 
 run_random_test: axis_adder
 	./axis_adder +UVM_TESTNAME=axis_tests.random_test +UVM_VERBOSITY=$(VERBOSITY) +random_seed=$(SEED) # +UVM_OBJECTION_TRACE
+
+run_nodelay_random_test: axis_adder
+	./axis_adder +UVM_TESTNAME=axis_tests.random_test +UVM_VERBOSITY=$(VERBOSITY) +random_seed=$(SEED) +UVM_SET_TYPE_OVERRIDE=axis_item.axis_item,axis_nodelay_item.axis_nodelay_item # +UVM_OBJECTION_TRACE
