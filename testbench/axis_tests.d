@@ -2,13 +2,20 @@ import esdl;
 import uvm;
 
 import axis_adder: axis_intf;
+import axis_snooper: axis_snooper;
 
 class directed_test: uvm_test
 {
   mixin uvm_component_utils;
 
   axis_intf axis_in;
-  
+  axis_snooper rsp_snooper;
+
+  override void build_phase(uvm_phase phase) {
+    super.build_phase(phase);
+    rsp_snooper = new axis_snooper("rsp_snooper", this);
+  }
+
   this(string name, uvm_component parent) {
     super(name, parent);
   }
