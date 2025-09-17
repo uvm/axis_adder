@@ -21,6 +21,7 @@ VERBOSITY = NONE
 TBSRC = ../testbench/axis_tests.d \
 	../testbench/axis_item.d \
 	../testbench/axis_seq.d \
+	../testbench/axis_random_seq.d \
 	../testbench/axis_env.d \
 	../testbench/axis_scoreboard.d \
 	../testbench/axis_agent.d \
@@ -50,5 +51,8 @@ axis_adder: link_verilator $(DUTLIB) $(TBSRC)
 	ldc2 $(DFLAGS) -Ieuvm_dir $(TBSRC) $(DUTLIB) -of$@ -L-luvm-ldc-shared -L-lesdl-ldc-shared \
 		-L-lphobos2-ldc-shared -L-ldruntime-ldc-shared -L-ldl -L-lstdc++
 
-run: axis_adder
+run_directed_test: axis_adder
 	./axis_adder +UVM_TESTNAME=axis_tests.directed_test +UVM_VERBOSITY=$(VERBOSITY) # +UVM_OBJECTION_TRACE
+
+run_random_test: axis_adder
+	./axis_adder +UVM_TESTNAME=axis_tests.random_test +UVM_VERBOSITY=$(VERBOSITY) +random_seed=$(SEED) # +UVM_OBJECTION_TRACE
