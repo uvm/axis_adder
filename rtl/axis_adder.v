@@ -28,7 +28,7 @@ module axis_adder(ACLK, ARESETn, TDATA_in, TLAST_in, TVALID_in, TREADY_in,
          TDATA_out <= 0;
       end
       else
-        // if (TREADY_in) begin
+        if (TREADY_in) begin
            case(count_out)
              4: begin
                 TDATA_out <= sum[31:24];
@@ -62,7 +62,7 @@ module axis_adder(ACLK, ARESETn, TDATA_in, TLAST_in, TVALID_in, TREADY_in,
                 sum <= 0;
              end
            endcase // case (count_out)
-        // end // if (TREADY_in)
+        end // if (TREADY_in)
    end
    
    always @(posedge ACLK) begin
