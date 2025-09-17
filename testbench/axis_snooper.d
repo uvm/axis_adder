@@ -13,6 +13,8 @@ class axis_snooper: uvm_monitor
     super(name,parent);
   }
 
+  @UVM_BUILD uvm_analysis_port!axis_item egress;
+
   override void connect_phase(uvm_phase phase) {
     super.connect_phase(phase);
     
@@ -36,6 +38,7 @@ class axis_snooper: uvm_monitor
         item.last = cast(bool) axis.last;
         uvm_info("AXIS: ITEM", format("\n%s", item.sprint()),
                  UVM_NONE);
+        egress.write(item);
       }
     }
   }
